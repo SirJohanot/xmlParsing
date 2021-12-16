@@ -1,4 +1,4 @@
-package com.epam.xmlParsing.entity;
+package com.epam.xmlparsing.entity;
 
 public enum Soil {
 
