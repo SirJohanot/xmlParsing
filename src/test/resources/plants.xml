@@ -10,7 +10,7 @@
         </growingTips>
         <petalNumber>40</petalNumber>
     </flower>
-    <flower id="2">
+    <flower id="2" origin="Persia">
         <name>Dandelion</name>
         <soilType>SILT</soilType>
         <growingTips>
@@ -30,7 +30,7 @@
         </growingTips>
         <trunkDiameter>30</trunkDiameter>
     </tree>
-    <tree id="4">
+    <tree id="4" origin="North America">
         <name>Paper Birch</name>
         <soilType>SAND</soilType>
         <growingTips>

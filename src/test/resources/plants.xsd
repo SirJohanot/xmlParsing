@@ -18,7 +18,13 @@
             <element name="growingTips" type="tns:Tips"/>
         </sequence>
         <attribute name="id" type="positiveInteger" use="required" />
+        <attribute name="origin" type="tns:Origin"/>
     </complexType>
+    <simpleType name="Origin">
+        <restriction base="string">
+            <pattern value="[A-Z][A-Za-z ]*"/>
+        </restriction>
+    </simpleType>
     <simpleType name="Soil">
         <restriction>
             <enumeration value="SAND"/>
@@ -26,6 +32,13 @@
             <enumeration value="CLAY"/>
         </restriction>
     </simpleType>
+    <complexType name="Tips">
+        <sequence>
+            <element name="neededTemperature" type="positiveInteger"/>
+            <element name="needsLight" type="boolean"/>
+            <element name="weeklyRequiredWater" type="positiveInteger"/>
+        </sequence>
+    </complexType>
     <complexType name="Tree">
         <complexContent>
             <extension base="tns:Plant">
@@ -43,12 +56,5 @@
                 </sequence>
             </extension>
         </complexContent>
-    </complexType>
-    <complexType name="Tips">
-        <sequence>
-            <element name="neededTemperature" type="positiveInteger"/>
-            <element name="needsLight" type="boolean"/>
-            <element name="weeklyRequiredWater" type="positiveInteger"/>
-        </sequence>
     </complexType>
 </schema>
