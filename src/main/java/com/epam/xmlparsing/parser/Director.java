@@ -11,12 +11,12 @@ public class Director {
     private final Parser parser;
     private final XMLValidator validator;
 
-    public Director(Parser parser, XMLValidator xmlValidator){
-        this.parser=parser;
-        this.validator=xmlValidator;
+    public Director(Parser parser, XMLValidator xmlValidator) {
+        this.parser = parser;
+        this.validator = xmlValidator;
     }
 
-    List<Plant> parse(String filePath){
+    List<Plant> parse(String filePath) {
         return null;
     }
 }
