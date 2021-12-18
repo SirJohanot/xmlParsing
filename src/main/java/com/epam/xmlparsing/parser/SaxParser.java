@@ -10,19 +10,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SAXParsing implements Parser {
+public class SaxParser implements Parser {
     @Override
     public List<Plant> parse(String filePath) throws ParserException {
-        SAXParserFactory factory=SAXParserFactory.newInstance();
-        List<Plant> result;
-        PlantHandler handler=new PlantHandler();
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        PlantHandler handler = new PlantHandler();
         try {
-            SAXParser saxParser= factory.newSAXParser();
+            SAXParser saxParser = factory.newSAXParser();
             saxParser.parse(filePath, handler);
-            result=handler.getPlants();
+            return handler.getPlants();
         } catch (ParserConfigurationException | IOException | SAXException e) {
-           throw new ParserException(e);
+            throw new ParserException(e);
         }
-        return result;
     }
 }
