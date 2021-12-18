@@ -4,7 +4,7 @@ import com.epam.xmlparsing.entity.Plant;
 
 import java.util.List;
 
-public class JAXBParsing implements Parser {
+public class DomParser implements Parser {
     @Override
     public List<Plant> parse(String filePath) {
         return null;
