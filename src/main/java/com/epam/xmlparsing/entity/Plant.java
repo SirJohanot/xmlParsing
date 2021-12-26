@@ -1,23 +1,33 @@
 package com.epam.xmlparsing.entity;
 
+import javax.xml.bind.annotation.*;
+import java.util.Objects;
+
+@XmlRootElement(name = "plant", namespace = "plants")
+@XmlSeeAlso({Flower.class, Tree.class})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Plant {
 
-    private final int id;
-    private final String origin;
-    private final String name;
-    private final Soil soilType;
-    private final int neededTemperature;
-    private final boolean needsLight;
-    private final int weeklyRequiredWater;
+    @XmlAttribute(required = true)
+    private int id;
+    @XmlAttribute
+    private String origin = "";
+    @XmlElement(namespace = "plants")
+    private String name;
+    @XmlElement(namespace = "plants")
+    private Soil soilType;
+    @XmlElement(name = "growingTips", namespace = "plants")
+    private GrowingTips growingTips;
+
+    public Plant() {
+    }
 
     public Plant(int id, String origin, String name, Soil soilType, int neededTemperature, boolean needsLight, int weeklyRequiredWater) {
         this.id = id;
         this.origin = origin;
         this.name = name;
         this.soilType = soilType;
-        this.neededTemperature = neededTemperature;
-        this.needsLight = needsLight;
-        this.weeklyRequiredWater = weeklyRequiredWater;
+        growingTips = new GrowingTips(neededTemperature, needsLight, weeklyRequiredWater);
     }
 
     public Plant(PlantBuilder builder) {
@@ -25,9 +35,7 @@ public class Plant {
         this.origin = builder.origin;
         this.name = builder.name;
         this.soilType = builder.soilType;
-        this.neededTemperature = builder.neededTemperature;
-        this.needsLight = builder.needsLight;
-        this.weeklyRequiredWater = builder.weeklyRequiredWater;
+        growingTips = new GrowingTips(builder.neededTemperature, builder.needsLight, builder.weeklyRequiredWater);
     }
 
     public int getId() {
@@ -47,20 +55,20 @@ public class Plant {
     }
 
     public int getNeededTemperature() {
-        return neededTemperature;
+        return growingTips.getNeededTemperature();
     }
 
     public boolean isNeedsLight() {
-        return needsLight;
+        return growingTips.isNeedsLight();
     }
 
     public int getWeeklyRequiredWater() {
-        return weeklyRequiredWater;
+        return growingTips.getWeeklyRequiredWater();
     }
 
     public static class PlantBuilder {
         private int id;
-        private String origin;
+        private String origin = "";
         private String name;
         private Soil soilType;
         private int neededTemperature;
@@ -108,18 +116,17 @@ public class Plant {
             return false;
         }
         Plant plant = (Plant) o;
-        return id == plant.id && neededTemperature == plant.neededTemperature && needsLight == plant.needsLight && weeklyRequiredWater == plant.weeklyRequiredWater && name.equals(plant.name) && soilType == plant.soilType;
+        return id == plant.id && Objects.equals(origin, plant.origin) && Objects.equals(name, plant.name) && soilType == plant.soilType && Objects.equals(growingTips, plant.growingTips);
     }
 
     @Override
     public int hashCode() {
         int prime = 17;
         prime = 31 * prime + id;
-        prime = 31 * prime + name.hashCode();
-        prime = 31 * prime + soilType.hashCode();
-        prime = 31 * prime + neededTemperature;
-        prime = 31 * prime + (needsLight ? 1 : 0);
-        prime = 31 * prime + weeklyRequiredWater;
+        prime = 31 * prime + (origin == null ? 0 : origin.hashCode());
+        prime = 31 * prime + (name.hashCode());
+        prime = 31 * prime + (soilType.hashCode());
+        prime = 31 * prime + growingTips.hashCode();
         return prime;
     }
 
@@ -130,9 +137,7 @@ public class Plant {
                 ", origin='" + origin + '\'' +
                 ", name='" + name + '\'' +
                 ", soilType=" + soilType +
-                ", neededTemperature=" + neededTemperature +
-                ", needsLight=" + needsLight +
-                ", weeklyRequiredWater=" + weeklyRequiredWater +
+                ", growingTips=" + growingTips +
                 '}';
     }
 }

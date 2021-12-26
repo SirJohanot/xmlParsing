@@ -1,10 +1,18 @@
 package com.epam.xmlparsing.entity;
 
+import javax.xml.bind.annotation.*;
 import java.util.Objects;
 
+@XmlRootElement(name = "tree", namespace = "plants")
+@XmlType(name = "tree", namespace = "plants")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Tree extends Plant {
 
-    private final double trunkDiameter;
+    @XmlElement(namespace = "plants")
+    private double trunkDiameter;
+
+    public Tree() {
+    }
 
     public Tree(int id, String origin, String name, Soil soilType, int neededTemperature, boolean needsLight, int weeklyRequiredWater, double trunkDiameter) {
         super(id, origin, name, soilType, neededTemperature, needsLight, weeklyRequiredWater);
@@ -53,7 +61,7 @@ public class Tree extends Plant {
 
     @Override
     public String toString() {
-        return "Tree{" +
+        return super.toString() + "Tree{" +
                 "trunkDiameter=" + trunkDiameter +
                 '}';
     }
