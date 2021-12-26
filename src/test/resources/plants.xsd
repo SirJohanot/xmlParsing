@@ -13,11 +13,11 @@
     </element>
     <complexType name="Plant">
         <sequence>
-            <element name="name" type="string" />
+            <element name="name" type="string"/>
             <element name="soilType" type="tns:Soil"/>
             <element name="growingTips" type="tns:Tips"/>
         </sequence>
-        <attribute name="id" type="positiveInteger" use="required" />
+        <attribute name="id" type="positiveInteger" use="required"/>
         <attribute name="origin" type="tns:Origin"/>
     </complexType>
     <simpleType name="Origin">
