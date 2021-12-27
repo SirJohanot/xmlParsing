@@ -23,7 +23,7 @@ public class JaxbParserTest {
             new Tree(4, "North America", "Paper Birch", Soil.SAND, 5, true, 430, 40.0));
 
     @Test
-    public void testParseShouldReturnListOfPlantsWhenThereAreBothTreesAndFlowersInFile() throws JAXBException, FileNotFoundException {
+    public void testParseShouldReturnListOfPlantsWhenThereAreBothTreesAndFlowersInFile() throws ParserException {
         //given
         //when
         List<Plant> actualList = PARSER.parse(FILE_WITH_TWO_FLOWERS_AND_TWO_TREES);
