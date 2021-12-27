@@ -11,5 +11,5 @@ import java.util.List;
 
 public interface Parser {
 
-    List<Plant> parse(String filePath) throws ParserException, JAXBException, IOException, ParserConfigurationException, SAXException;
+    List<Plant> parse(String filePath) throws ParserException;
 }
