@@ -1,6 +1,8 @@
 package com.epam.xmlparsing.parser;
 
 import com.epam.xmlparsing.entity.Plant;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -11,8 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SaxParser implements Parser {
+
+    private static final Logger LOGGER = LogManager.getLogger(SaxParser.class);
+
     @Override
     public List<Plant> parse(String filePath) throws ParserException {
+        LOGGER.info("Started parsing plants from " + filePath);
         SAXParserFactory factory = SAXParserFactory.newInstance();
         PlantHandler handler = new PlantHandler();
         try {
