@@ -1,5 +1,7 @@
 package com.epam.xmlparsing.validation;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -13,18 +15,25 @@ import java.io.IOException;
 
 public class XMLValidator {
 
-    public boolean validate(String xmlPath, String xsdPath) throws IOException, SAXException {
-        String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-        SchemaFactory factory = SchemaFactory.newInstance(language);
-        File schemaLocation = new File(xsdPath);
-        Schema schema = factory.newSchema(schemaLocation);
-        Validator validator = schema.newValidator();
-        Source source = new StreamSource(xmlPath);
+    private static final Logger LOGGER = LogManager.getLogger(XMLValidator.class);
+
+    public boolean validate(String xmlPath, String xsdPath) throws ValidatorException {
+        LOGGER.info("Started validating " + xmlPath + " by " + xsdPath);
         try {
-            validator.validate(source);
-        } catch (IllegalArgumentException e) {
-            return false;
+            String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
+            SchemaFactory factory = SchemaFactory.newInstance(language);
+            File schemaLocation = new File(xsdPath);
+            Schema schema = factory.newSchema(schemaLocation);
+            Validator validator = schema.newValidator();
+            Source source = new StreamSource(xmlPath);
+            try {
+                validator.validate(source);
+            } catch (IllegalArgumentException e) {
+                return false;
+            }
+            return true;
+        } catch (IOException | SAXException e) {
+            throw new ValidatorException(e);
         }
-        return true;
     }
 }
