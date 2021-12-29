@@ -7,8 +7,6 @@ import com.epam.xmlparsing.entity.Tree;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 

@@ -4,9 +4,6 @@ import com.epam.xmlparsing.validation.ValidatorException;
 import com.epam.xmlparsing.validation.XMLValidator;
 import org.junit.Assert;
 import org.junit.Test;
-import org.xml.sax.SAXException;
-
-import java.io.IOException;
 
 public class XMLValidatorTest {
 

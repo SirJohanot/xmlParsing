@@ -1,7 +1,6 @@
 package com.epam.xmlparsing.entity;
 
 import javax.xml.bind.annotation.*;
-import java.util.Objects;
 
 @XmlRootElement(name = "flower", namespace = "plants")
 @XmlType(name = "flower", namespace = "plants")

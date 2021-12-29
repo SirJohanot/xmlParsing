@@ -1,7 +1,6 @@
 package com.epam.xmlparsing.entity;
 
 import javax.xml.bind.annotation.*;
-import java.util.Objects;
 
 @XmlRootElement(name = "tree", namespace = "plants")
 @XmlType(name = "tree", namespace = "plants")
@@ -55,7 +54,7 @@ public class Tree extends Plant {
     public int hashCode() {
         int prime = 17;
         prime = 31 * prime + super.hashCode();
-        prime = 31 * (int) trunkDiameter;
+        prime = 31 * prime + (int) trunkDiameter;
         return prime;
     }
 

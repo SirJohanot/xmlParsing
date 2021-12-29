@@ -4,11 +4,7 @@ import com.epam.xmlparsing.entity.Plant;
 import com.epam.xmlparsing.validation.XMLValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
 import java.util.List;
 
 public class Director {
